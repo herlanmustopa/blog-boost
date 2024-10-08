@@ -17,18 +17,18 @@ const BlogList = () => {
   };
 
   return (
-    <div className='max-w-4xl mx-auto p-6 bg-gray-50 shadow-lg rounded-lg'>
-      <h1 className='text-2xl font-bold mb-6'>Blog Posts</h1>
+    <div className='w-full h-full p-6 bg-gray-50 shadow-lg rounded-lg'>
+      <h1 className='text-2xl font-bold mb-6 text-black'>Blog Posts</h1>
       {posts.length === 0 ? (
         <p className='text-gray-500'>No posts yet. Create one!</p>
       ) : (
-        <ul className='space-y-4'>
+        <ul className='space-y-4 h-full w-full'>
           {posts.map((post) => (
             <li
               key={post.id}
               className='bg-white p-4 rounded-md shadow-sm flex justify-between items-center'>
               <div>
-                <Link href={`/blog/${post.id}`}>
+                <Link href={`/${post.id}`}>
                   <div className='text-xl font-semibold text-blue-600 hover:underline'>
                     {post.title}
                   </div>

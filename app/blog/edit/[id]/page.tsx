@@ -23,7 +23,7 @@ const EditBlogPost = ({params}: BlogEditProps) => {
     if (post) {
       setFormData(post);
     } else {
-      router.push("/blog");
+      router.push("/");
     }
   }, [params.id]);
 
@@ -43,7 +43,7 @@ const EditBlogPost = ({params}: BlogEditProps) => {
         date: formData.date as string,
       };
       updateBlogPost(updatedPost);
-      router.push("/blog");
+      router.push("/");
     }
   };
 

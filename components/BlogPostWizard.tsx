@@ -56,7 +56,7 @@ const BlogPostWizard = () => {
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
-        router.push("/blog");
+        router.push("/");
       }, 2000); // Redirect to blog list after submission
     }
   };

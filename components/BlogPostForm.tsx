@@ -50,7 +50,7 @@ const BlogPostWizard = () => {
         date: new Date().toLocaleDateString(),
       } as BlogPost;
       saveBlogPost(newPost);
-      router.push("/blog");
+      router.push("/");
     }
   };
 
