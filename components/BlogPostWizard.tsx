@@ -3,6 +3,7 @@ import React, {useState} from "react";
 import {useRouter} from "next/navigation";
 import {v4 as uuidv4} from "uuid";
 import {saveBlogPost, BlogPost} from "../utils/blogStorage";
+import Dialog from "./Dialog";
 
 const categories = ["Tech", "Lifestyle", "Business"];
 
@@ -10,6 +11,7 @@ const BlogPostWizard = () => {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState<Partial<BlogPost>>({});
   const [errors, setErrors] = useState<string[]>([]);
+  const [showSuccess, setShowSuccess] = useState(false);
   const router = useRouter();
 
   const handleChange = (
@@ -51,7 +53,11 @@ const BlogPostWizard = () => {
         date: new Date().toLocaleDateString(),
       } as BlogPost;
       saveBlogPost(newPost);
-      router.push("/blog"); // Redirect to blog list after submission
+      setShowSuccess(true);
+      setTimeout(() => {
+        setShowSuccess(false);
+        router.push("/blog");
+      }, 2000); // Redirect to blog list after submission
     }
   };
 
@@ -222,6 +228,8 @@ const BlogPostWizard = () => {
           </div>
         </div>
       )}
+
+      {showSuccess && <Dialog message='Success' />}
     </div>
   );
 };
