@@ -2,8 +2,11 @@
 import React, {useState} from "react";
 import {useRouter} from "next/navigation";
 import {v4 as uuidv4} from "uuid";
-import {saveBlogPost, BlogPost} from "../utils/blogStorage";
-import Dialog from "./Dialog";
+import {saveBlogPost, BlogPost} from "../../utils/blogStorage";
+import Dialog from "../Molecules/Dialog";
+import Input from "../Molecules/Input";
+import Select from "../Molecules/Select";
+import TextArea from "../Molecules/TextArea";
 
 const categories = ["Tech", "Lifestyle", "Business"];
 
@@ -22,7 +25,6 @@ const BlogPostWizard = () => {
     setFormData({...formData, [e.target.name]: e.target.value});
   };
 
-  // Validation checks for each step
   const validateStep = (): boolean => {
     const currentErrors: string[] = [];
 
@@ -57,7 +59,7 @@ const BlogPostWizard = () => {
       setTimeout(() => {
         setShowSuccess(false);
         router.push("/");
-      }, 2000); // Redirect to blog list after submission
+      }, 2000);
     }
   };
 
@@ -80,30 +82,20 @@ const BlogPostWizard = () => {
       {step === 1 && (
         <div>
           <h2 className='text-xl font-semibold mb-4'>Step 1: Blog Metadata</h2>
-          <div className='mb-4'>
-            <label className='block text-sm font-medium text-gray-700'>
-              Title
-            </label>
-            <input
-              name='title'
-              className='mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm'
-              placeholder='Title'
-              onChange={handleChange}
-              value={formData.title || ""}
-            />
-          </div>
-          <div className='mb-4'>
-            <label className='block text-sm font-medium text-gray-700'>
-              Author Name
-            </label>
-            <input
-              name='author'
-              className='mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm'
-              placeholder='Author Name'
-              onChange={handleChange}
-              value={formData.author || ""}
-            />
-          </div>
+          <Input
+            label='Title'
+            name='title'
+            value={formData.title || ""}
+            onChange={handleChange}
+            type='text'
+          />
+          <Input
+            label='Author Name'
+            name='author'
+            value={formData.author || ""}
+            onChange={handleChange}
+            type='text'
+          />
           <div className='flex justify-between'>
             <button
               className='bg-blue-500 text-white px-4 py-2 rounded-md'
@@ -119,35 +111,19 @@ const BlogPostWizard = () => {
           <h2 className='text-xl font-semibold mb-4'>
             Step 2: Blog Summary & Category
           </h2>
-          <div className='mb-4'>
-            <label className='block text-sm font-medium text-gray-700'>
-              Summary
-            </label>
-            <textarea
-              name='summary'
-              className='mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm'
-              placeholder='Summary'
-              onChange={handleChange}
-              value={formData.summary || ""}
-            />
-          </div>
-          <div className='mb-4'>
-            <label className='block text-sm font-medium text-gray-700'>
-              Category
-            </label>
-            <select
-              name='category'
-              className='mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm'
-              onChange={handleChange}
-              value={formData.category || ""}>
-              <option value=''>Select Category</option>
-              {categories.map((cat) => (
-                <option key={cat} value={cat}>
-                  {cat}
-                </option>
-              ))}
-            </select>
-          </div>
+          <Input
+            label='Summary'
+            name='summary'
+            value={formData.summary || ""}
+            onChange={handleChange}
+            type='textarea'
+          />
+          <Select
+            label='Category'
+            value={formData.category || ""}
+            onChange={handleChange}
+            categories={categories}
+          />
           <div className='flex justify-between'>
             <button
               className='bg-gray-300 text-black px-4 py-2 rounded-md'
@@ -166,18 +142,12 @@ const BlogPostWizard = () => {
       {step === 3 && (
         <div>
           <h2 className='text-xl font-semibold mb-4'>Step 3: Blog Content</h2>
-          <div className='mb-4'>
-            <label className='block text-sm font-medium text-gray-700'>
-              Blog Content
-            </label>
-            <textarea
-              name='content'
-              className='mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm'
-              placeholder='Blog Content'
-              onChange={handleChange}
-              value={formData.content || ""}
-            />
-          </div>
+          <TextArea
+            label='Content'
+            name='content'
+            value={formData.content || ""}
+            onChange={handleChange}
+          />
           <div className='flex justify-between'>
             <button
               className='bg-gray-300 text-black px-4 py-2 rounded-md'

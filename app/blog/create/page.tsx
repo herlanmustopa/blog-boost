@@ -1,5 +1,5 @@
 import React from "react";
-import BlogPostWizard from "../../../components/BlogPostWizard";
+import BlogPostWizard from "../../../components/Organism/BlogPostWizard";
 
 const CreateBlogPost = () => {
   return (

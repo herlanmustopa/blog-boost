@@ -28,7 +28,7 @@ const BlogList = () => {
               key={post.id}
               className='bg-white p-4 rounded-md shadow-sm flex justify-between items-center'>
               <div>
-                <Link href={`/${post.id}`}>
+                <Link href={`/blog/${post.id}`}>
                   <div className='text-xl font-semibold text-blue-600 hover:underline'>
                     {post.title}
                   </div>
