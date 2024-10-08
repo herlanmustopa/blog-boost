@@ -199,7 +199,12 @@ const BlogPostWizard = () => {
         </div>
       )}
 
-      {showSuccess && <Dialog message='Success' />}
+      {showSuccess && (
+        <Dialog
+          message='Your blog post has been submitted successfully.'
+          title='Success'
+        />
+      )}
     </div>
   );
 };
